@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum AreaType { Home, Food, Defense, Population };
 public class Area : MonoBehaviour
 {
     [SerializeField]
     private int meepleLimit;
+    [SerializeField]
+    private AreaType areaType;
 
     private List<Meeple> meeples = new List<Meeple>();
 

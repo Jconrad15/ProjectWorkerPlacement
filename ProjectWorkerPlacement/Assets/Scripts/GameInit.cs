@@ -13,6 +13,8 @@ public class GameInit : MonoBehaviour
     void Start()
     {
         meepleCreator.NewHomeMeeple(startingMeepleCount);
+
+        PhaseController.Instance.StartPhaseSystem();
     }
 
 }

@@ -47,7 +47,8 @@ public class Meeple : MonoBehaviour
     {
         // TODO: Snap to a position
         // Determine collider overlaps
-        Collider2D[] colliders = new Collider2D[1];
+        int maxColliders = 5;
+        Collider2D[] colliders = new Collider2D[maxColliders];
         int colliderCount = boxCollider.OverlapCollider(
             new ContactFilter2D(), colliders);
 
@@ -64,13 +65,27 @@ public class Meeple : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Collided with something, try switch area.
+    /// </summary>
+    /// <param name="colliders"></param>
+    /// <returns></returns>
     private bool TryChangeArea(Collider2D[] colliders)
     {
-        // Collided with something,
-        // remove from previous area
-        // add to new area
+        int selectedColliderIndex = 0;
+        // Get collider that overlaps main transform point
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (colliders[i] == null) { continue; }
 
-        if (colliders[0]
+            if (colliders[i].OverlapPoint(transform.position))
+            {
+                selectedColliderIndex = i;
+                break;
+            }
+        }
+
+        if (colliders[selectedColliderIndex]
             .TryGetComponent<Area>(out Area newArea) == true)
         {
             if (newArea.TryAddMeeple(this))
