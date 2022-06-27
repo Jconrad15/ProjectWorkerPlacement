@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: AreaLayer
+    uniqueID: 1195702929
+    locked: 0
+  - name: Meeples
+    uniqueID: 2531437637
+    locked: 0
