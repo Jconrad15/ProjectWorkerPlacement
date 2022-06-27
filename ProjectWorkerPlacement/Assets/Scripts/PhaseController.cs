@@ -8,7 +8,7 @@ public enum PhaseState { WorkerPlacement, Card, Growth };
 /// </summary>
 public class PhaseController : MonoBehaviour
 {
-    private PhaseState phase;
+    public PhaseState Phase { get; private set; }
 
     private Action cbOnStartWorkerPlacementPhase;
     private Action cbOnStartCardPhase;
@@ -35,33 +35,33 @@ public class PhaseController : MonoBehaviour
 
     private void StartWorkerPlacementPhase()
     {
-        phase = PhaseState.WorkerPlacement;
+        Phase = PhaseState.WorkerPlacement;
         cbOnStartWorkerPlacementPhase?.Invoke();
     }
 
     private void StartCardPhase()
     {
-        phase = PhaseState.Card;
+        Phase = PhaseState.Card;
         cbOnStartCardPhase?.Invoke();
     }
 
     private void StartGrowthPhase()
     {
-        phase = PhaseState.Growth;
+        Phase = PhaseState.Growth;
         cbOnStartGrowthPhase?.Invoke();
     }
 
-    public void NextTurn()
+    public void NextPhase()
     {
-        if (phase == PhaseState.WorkerPlacement)
+        if (Phase == PhaseState.WorkerPlacement)
         {
             StartCardPhase();
         }
-        else if (phase == PhaseState.Card)
+        else if (Phase == PhaseState.Card)
         {
             StartGrowthPhase();
         }
-        else if (phase == PhaseState.Growth)
+        else if (Phase == PhaseState.Growth)
         {
             StartWorkerPlacementPhase();
         }

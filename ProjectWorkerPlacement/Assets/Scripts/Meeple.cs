@@ -18,6 +18,12 @@ public class Meeple : MonoBehaviour
 
     private void OnMouseDown()
     {
+        // Only drag during placement phase
+        if (PhaseController.Instance.Phase != PhaseState.WorkerPlacement)
+        {
+            return;
+        }
+
         screenPoint = Camera.main.WorldToScreenPoint(
             gameObject.transform.position);
 
@@ -32,12 +38,18 @@ public class Meeple : MonoBehaviour
 
     private void OnMouseDrag()
     {
+        // Only drag during placement phase
+        if (PhaseController.Instance.Phase != PhaseState.WorkerPlacement)
+        {
+            return;
+        }
+
         Vector3 curScreenPoint = new Vector3(
             Input.mousePosition.x,
             Input.mousePosition.y,
             screenPoint.z);
 
-        Vector3 curPosition = 
+        Vector3 curPosition =
             Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
 
         transform.position = curPosition;
@@ -45,6 +57,12 @@ public class Meeple : MonoBehaviour
 
     private void OnMouseUp()
     {
+        // Only drag during placement phase
+        if (PhaseController.Instance.Phase != PhaseState.WorkerPlacement)
+        {
+            return;
+        }
+
         // TODO: Snap to a position
         // Determine collider overlaps
         int maxColliders = 5;
