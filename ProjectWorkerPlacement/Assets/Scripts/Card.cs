@@ -5,5 +5,12 @@ using UnityEngine;
 public class Card
 {
 
+    public bool Perform()
+    {
+        Debug.Log("Card is performed");
+
+
+        return true;
+    }
 
 }

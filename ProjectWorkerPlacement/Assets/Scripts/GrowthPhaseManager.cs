@@ -15,11 +15,17 @@ public class GrowthPhaseManager : MonoBehaviour
 
     private void OnStartGrowthPhase()
     {
+        StartCoroutine(GrowthPhase());
+    }
+
+    private IEnumerator GrowthPhase()
+    {
         // Perform the growth phase
         Debug.Log("Perform Growth Phase");
 
         ReturnMeeplesHome();
 
+        yield return null;
         PhaseController.Instance.NextPhase();
     }
 
