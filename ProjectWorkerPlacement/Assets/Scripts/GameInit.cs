@@ -10,7 +10,7 @@ public class GameInit : MonoBehaviour
     [SerializeField]
     private MeepleCreator meepleCreator;
 
-    void Start()
+    public void StartButton()
     {
         meepleCreator.NewHomeMeeple(startingMeepleCount);
 
