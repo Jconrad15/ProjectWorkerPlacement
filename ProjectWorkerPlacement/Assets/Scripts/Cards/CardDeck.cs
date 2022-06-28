@@ -8,12 +8,7 @@ public class CardDeck
 
     public CardDeck()
     {
-        cards = new Queue<Card>();
-
-        // TODO: create the deck of cards
-        // For now create two blank cards
-        cards.Enqueue(new Card());
-        cards.Enqueue(new Card());
+        cards = CardDeckCreator.CreateDeck();
     }
 
     public Card DrawCard()

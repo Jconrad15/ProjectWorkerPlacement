@@ -2,13 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Card
+public class CardAction
 {
-
-    public bool Perform()
+    public virtual bool Perform()
     {
-        Debug.Log("Card is performed");
-
+        Debug.Log("Perform");
 
         return true;
     }
