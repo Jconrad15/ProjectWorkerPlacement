@@ -23,6 +23,14 @@ public class GrowthPhaseManager : MonoBehaviour
         // Perform the growth phase
         Debug.Log("Perform Growth Phase");
 
+        // Apply the outcomes of the turn here.
+
+
+
+
+
+
+
         ReturnMeeplesHome();
 
         yield return null;

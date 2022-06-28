@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class CardAction
 {
-    public virtual bool Perform()
+    /// <summary>
+    /// These should be modifiers that affect 
+    /// various things during the growth phase.
+    /// </summary>
+    /// <returns></returns>
+    public virtual bool ApplyModifiers()
     {
-        Debug.Log("Perform");
+        Debug.Log("ApplyModifiers");
 
         return true;
     }

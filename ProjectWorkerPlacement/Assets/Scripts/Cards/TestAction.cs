@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class TestAction : CardAction
 {
-    public override bool Perform()
+    public override bool ApplyModifiers()
     {
 
 
 
-        return base.Perform();
+        return base.ApplyModifiers();
     }
 }

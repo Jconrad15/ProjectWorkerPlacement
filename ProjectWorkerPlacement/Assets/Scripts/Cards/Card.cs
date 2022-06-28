@@ -16,7 +16,7 @@ public class Card
 
     public bool Perform()
     {
-        return cardAction.Perform();
+        return cardAction.ApplyModifiers();
     }
 
 }
