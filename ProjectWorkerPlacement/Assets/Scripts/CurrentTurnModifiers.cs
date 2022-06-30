@@ -7,7 +7,8 @@ using UnityEngine;
 /// </summary>
 public class CurrentTurnModifiers: MonoBehaviour
 {
-    public int PopulationGrowth { get; private set; }
+    public int AdditionalPopulation { get; private set; }
+    public int AdditionalFoodPerPopulation { get; private set; }
 
     public static CurrentTurnModifiers Instance { get; private set; }
     private void Awake()
@@ -23,12 +24,32 @@ public class CurrentTurnModifiers: MonoBehaviour
         }
     }
 
-
-    public void AdjustPopulationGrowth(int amount)
+    private void Start()
     {
-        PopulationGrowth += amount;
+        SetDefault();
+
+        PhaseController.Instance
+            .RegisterOnStartWorkerPlacementPhase(SetDefault);
     }
 
+    /// <summary>
+    /// Set modifiers to default values on start worker placement phase.
+    /// </summary>
+    private void SetDefault()
+    {
+        AdditionalPopulation = 0;
+        AdditionalFoodPerPopulation = 0;
 
+    }
+
+    public void SetAdditionalPopulation(int amount)
+    {
+        AdditionalPopulation = amount;
+    }
+
+    public void SetAdditionalFoodPerPopulation(int amount)
+    {
+        AdditionalFoodPerPopulation = amount;
+    } 
 
 }

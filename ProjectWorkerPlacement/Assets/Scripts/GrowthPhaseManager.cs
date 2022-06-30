@@ -11,10 +11,14 @@ public class GrowthPhaseManager : MonoBehaviour
     [SerializeField]
     private Stockpile stockpile;
 
+    private CurrentTurnModifiers modifiers;
+
     private void Start()
     {
         PhaseController.Instance
             .RegisterOnStartGrowthPhase(OnStartGrowthPhase);
+
+        modifiers = CurrentTurnModifiers.Instance;
     }
 
     private void OnStartGrowthPhase()
@@ -48,8 +52,11 @@ public class GrowthPhaseManager : MonoBehaviour
             ((meepleCount * meepleCount) + meepleCount) / 2;
 
         // TODO: modifiers from cards here
+        int foodCount = 
+            baseFoodCount +
+            (modifiers.AdditionalFoodPerPopulation * meepleCount);
 
-        stockpile.AddFood(baseFoodCount);
+        stockpile.AddFood(foodCount);
     }
 
     private void EvaluateDefenseSlots()
@@ -62,11 +69,18 @@ public class GrowthPhaseManager : MonoBehaviour
         Area[] populationAreas = workAreaManager.PopulationAreas;
         int meepleCount = DetermineMeepleCount(populationAreas);
 
-        // TODO: Add modifiers from cards
+        // Add modifiers from cards
+        int additionalPopulation = modifiers.AdditionalPopulation;
+        if (additionalPopulation > 0)
+        {
+            stockpile.AddMeeple(additionalPopulation);
+        }
 
+        // Base slot growth
         if (meepleCount == 2)
         {
-            stockpile.AddMeeple(1);
+            int childCount = 1;
+            stockpile.AddMeeple(childCount);
         }
 
     }

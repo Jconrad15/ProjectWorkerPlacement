@@ -42,6 +42,9 @@ public class DrawnCardDisplay : MonoBehaviour
         }
 
         newCard.transform.position = cardPosition;
+
+        CardPrefabDisplay cp = newCard.GetComponent<CardPrefabDisplay>();
+        cp.SetupCard(card);
     }
 
     private void OnCardsCleared()

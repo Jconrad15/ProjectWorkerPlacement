@@ -8,6 +8,7 @@ public class CardPhaseManager : MonoBehaviour
 {
     private Action<Card, DeckType> cbOnCardDrawn;
     private Action cbOnCardsCleared;
+    private Action cbOnCardDecksCreated;
 
     private CardDeck knownCardDeck;
     private CardDeck hiddenCardDeck;
@@ -39,6 +40,7 @@ public class CardPhaseManager : MonoBehaviour
     {
         knownCardDeck = new CardDeck();
         hiddenCardDeck = new CardDeck();
+        cbOnCardDecksCreated?.Invoke();
     }
 
     private void OnStartCardPhase()
@@ -60,7 +62,7 @@ public class CardPhaseManager : MonoBehaviour
             bool cardIsDone = false;
             while (cardIsDone == false)
             {
-                cardIsDone = card.Perform();
+                cardIsDone = card.ApplyModifiers();
 
                 yield return null;
             }
@@ -100,6 +102,18 @@ public class CardPhaseManager : MonoBehaviour
         cbOnCardDrawn?.Invoke(drawNextKnownCard, DeckType.Known);
     }
 
+    public Card PeekAtCard(DeckType deckType)
+    {
+        if (deckType == DeckType.Hidden)
+        {
+            return hiddenCardDeck.Peek();
+        }
+        else
+        {
+            return knownCardDeck.Peek();
+        }
+    }
+
     public void RegisterOnCardDrawn(Action<Card, DeckType> callbackfunc)
     {
         cbOnCardDrawn += callbackfunc;
@@ -118,5 +132,15 @@ public class CardPhaseManager : MonoBehaviour
     public void UnregisterOnCardsCleared(Action callbackfunc)
     {
         cbOnCardsCleared -= callbackfunc;
+    }
+
+    public void RegisterOnCardDecksCreated(Action callbackfunc)
+    {
+        cbOnCardDecksCreated += callbackfunc;
+    }
+
+    public void UnregisterOnCardDecksCreated(Action callbackfunc)
+    {
+        cbOnCardDecksCreated -= callbackfunc;
     }
 }

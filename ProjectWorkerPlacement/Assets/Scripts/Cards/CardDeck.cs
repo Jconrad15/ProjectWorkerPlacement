@@ -22,6 +22,9 @@ public class CardDeck
         return cards.Dequeue();
     }
 
-
+    public Card Peek()
+    {
+        return cards.Peek();
+    }
 
 }

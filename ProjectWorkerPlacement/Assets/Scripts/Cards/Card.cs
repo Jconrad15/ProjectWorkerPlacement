@@ -3,20 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum CardType { Food, Population, Military };
-public class Card
+public abstract class Card
 {
-    public CardAction cardAction;
-    public CardType cardType;
+    public abstract CardType Type { get; protected set; }
+    public abstract string CardName { get; protected set; }
+    public abstract string Description { get; protected set; }
 
-    public Card(CardAction cardAction, CardType cardType)
-    {
-        this.cardAction = cardAction;
-        this.cardType = cardType;
-    }
-
-    public bool Perform()
-    {
-        return cardAction.ApplyModifiers();
-    }
+    public abstract bool ApplyModifiers();
 
 }

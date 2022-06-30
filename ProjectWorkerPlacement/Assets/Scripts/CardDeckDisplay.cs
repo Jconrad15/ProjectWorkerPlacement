@@ -9,18 +9,46 @@ public class CardDeckDisplay : MonoBehaviour
 
     [SerializeField]
     private GameObject knownCardDeck;
+    private SpriteRenderer knownSR;
+
     [SerializeField]
     private GameObject hiddenCardDeck;
+    private SpriteRenderer hiddenSR;
 
     private void Start()
     {
         cardPhaseManager.RegisterOnCardDrawn(OnCardDrawn);
+        cardPhaseManager.RegisterOnCardDecksCreated(InitialPeek);
+
+        knownSR = knownCardDeck.GetComponent<SpriteRenderer>();
+        hiddenSR = hiddenCardDeck.GetComponent<SpriteRenderer>();
     }
 
-    private void OnCardDrawn(Card card, DeckType deckType)
+    private void InitialPeek()
     {
-        // TODO: Show back of the next card in the deck
+        OnCardDrawn(null, DeckType.Hidden);
+        OnCardDrawn(null, DeckType.Known);
+    }
 
+    private void OnCardDrawn(Card drawnCard, DeckType deckType)
+    {
+        // Need to peak at top card on deck
+        Card peekedCard = cardPhaseManager.PeekAtCard(deckType);
 
+        // Determine which spriterenderer to use
+        SpriteRenderer currentSR = null;
+        switch (deckType)
+        {
+            case DeckType.Hidden:
+                currentSR = hiddenSR;
+                break;
+
+            case DeckType.Known:
+                currentSR = knownSR;
+                break;
+        }
+
+        Color c = CardDisplayProperties.DetermineCardColor(peekedCard);
+        currentSR.color = c;
     }
 }
