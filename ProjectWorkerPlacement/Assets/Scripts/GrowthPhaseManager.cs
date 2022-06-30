@@ -52,7 +52,7 @@ public class GrowthPhaseManager : MonoBehaviour
             ((meepleCount * meepleCount) + meepleCount) / 2;
 
         // TODO: modifiers from cards here
-        int foodCount = 
+        int foodCount =
             baseFoodCount +
             (modifiers.AdditionalFoodPerPopulation * meepleCount);
 

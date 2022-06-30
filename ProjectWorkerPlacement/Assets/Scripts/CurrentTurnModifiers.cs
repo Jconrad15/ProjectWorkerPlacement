@@ -39,7 +39,6 @@ public class CurrentTurnModifiers: MonoBehaviour
     {
         AdditionalPopulation = 0;
         AdditionalFoodPerPopulation = 0;
-
     }
 
     public void SetAdditionalPopulation(int amount)
@@ -47,9 +46,9 @@ public class CurrentTurnModifiers: MonoBehaviour
         AdditionalPopulation = amount;
     }
 
-    public void SetAdditionalFoodPerPopulation(int amount)
+    public void AdjustAdditionalFoodPerPopulation(int amount)
     {
-        AdditionalFoodPerPopulation = amount;
+        AdditionalFoodPerPopulation += amount;
     } 
 
 }
