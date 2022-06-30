@@ -56,6 +56,14 @@ public class Stockpile : MonoBehaviour
         FoodCount -= amount;
     }
 
+    public void AddMeeple(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            meepleCreator.CreateNewMeeple();
+        }
+    }
+
     public void RegisterOnFoodCountChanged(Action<int> callbackfunc)
     {
         cbOnFoodCountChanged += callbackfunc;

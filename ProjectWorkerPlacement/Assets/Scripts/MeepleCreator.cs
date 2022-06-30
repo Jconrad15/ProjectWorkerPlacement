@@ -24,6 +24,11 @@ public class MeepleCreator : MonoBehaviour
         cbOnMeepleCreated?.Invoke(meeple);
     }
 
+    public void CreateNewMeeple()
+    {
+        GenerateHomeMeeple();
+    }
+
     public void RegisterOnMeepleCreated(Action<Meeple> callbackfunc)
     {
         cbOnMeepleCreated += callbackfunc;

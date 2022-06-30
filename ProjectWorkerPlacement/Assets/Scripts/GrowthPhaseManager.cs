@@ -59,6 +59,15 @@ public class GrowthPhaseManager : MonoBehaviour
 
     private void EvaluatePopulationSlots()
     {
+        Area[] populationAreas = workAreaManager.PopulationAreas;
+        int meepleCount = DetermineMeepleCount(populationAreas);
+
+        // TODO: Add modifiers from cards
+
+        if (meepleCount == 2)
+        {
+            stockpile.AddMeeple(1);
+        }
 
     }
 
