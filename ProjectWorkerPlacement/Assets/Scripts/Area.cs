@@ -42,4 +42,9 @@ public class Area : MonoBehaviour
         }
     }
 
+    public int GetMeepleCount()
+    {
+        return meeples.Count;
+    }
+
 }
