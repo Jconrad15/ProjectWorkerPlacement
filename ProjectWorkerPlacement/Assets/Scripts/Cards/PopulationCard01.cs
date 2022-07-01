@@ -2,20 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Card01 : Card
+public class PopulationCard01 : Card
 {
     public override CardType Type { get; protected set; }
-     = CardType.Food;
+        = CardType.Population;
 
     public override string CardName { get; protected set; }
-     = "Bountiful Harvest";
+     = "Twins";
 
     public override string Description { get; protected set; }
-     = "Gain an extra +1 food per farmer";
+     = "Gain an extra +1 population from the population slots";
 
     public override bool ApplyModifiers()
     {
-        CurrentTurnModifiers.Instance.AdjustAdditionalFoodPerPopulation(1);
+        CurrentTurnModifiers.Instance.AdjustAdditionalChildren(1);
         return true;
     }
+
 }

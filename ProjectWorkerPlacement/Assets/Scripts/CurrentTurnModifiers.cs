@@ -12,6 +12,7 @@ public class CurrentTurnModifiers: MonoBehaviour
     public int FoodUpkeepPerPopulation { get; private set; }
     public int Attackers { get; private set; }
     public int DefensePerDefender { get; private set; }
+    public int AdditionalChildren { get; private set; }
 
     public static CurrentTurnModifiers Instance { get; private set; }
     private void Awake()
@@ -45,6 +46,7 @@ public class CurrentTurnModifiers: MonoBehaviour
         FoodUpkeepPerPopulation = 0;
         Attackers = 0;
         DefensePerDefender = 0;
+        AdditionalChildren = 0;
     }
 
     public void SetAdditionalPopulation(int amount)
@@ -70,6 +72,11 @@ public class CurrentTurnModifiers: MonoBehaviour
     public void AdjustDefensePerDefender(int amount)
     {
         DefensePerDefender += amount;
+    }
+
+    public void AdjustAdditionalChildren(int amount)
+    {
+        AdditionalChildren += amount;
     }
 
 }

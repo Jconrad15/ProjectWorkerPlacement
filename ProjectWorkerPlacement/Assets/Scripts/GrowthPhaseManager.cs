@@ -56,7 +56,24 @@ public class GrowthPhaseManager : MonoBehaviour
 
         int upkeep = stockpile.MeepleCount * upkeepPerPop;
 
-        stockpile.RemoveFood(upkeep);
+        // Apply food upkeep to food stockpile
+        // If not enough food, remove population
+        bool isDone = false;
+        while (isDone == false)
+        {
+            if (stockpile.FoodCount > 0)
+            {
+                stockpile.RemoveFood(1);
+                upkeep -= 1;
+            }
+            else
+            {
+                stockpile.RemoveMeeple();
+                upkeep -= 1;
+            }
+
+            if (upkeep <= 0) { isDone = true; }
+        }
     }
 
     private void EvaluateFoodSlots()
@@ -128,7 +145,7 @@ public class GrowthPhaseManager : MonoBehaviour
         // Base slot growth
         if (meepleCount == 2)
         {
-            int childCount = 1;
+            int childCount = 1 + modifiers.AdditionalChildren;
             stockpile.AddMeeple(childCount);
         }
 

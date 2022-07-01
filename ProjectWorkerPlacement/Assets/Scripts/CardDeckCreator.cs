@@ -3,18 +3,60 @@ using UnityEngine;
 
 public static class CardDeckCreator
 {
-    private static readonly List<Card> allPossibleCards = new List<Card>();
+    private static bool cardsInitialized = false;
 
+    private static readonly List<Card> foodCards = new List<Card>();
+    private static void CreateFoodCards()
+    {
+        foodCards.Add(new FoodCard01());
+
+    }
+
+    private static readonly List<Card> militaryCards = new List<Card>();
+    private static void CreateMilitaryCards()
+    {
+        militaryCards.Add(new MilitaryCard01());
+
+    }
+
+    private static readonly List<Card> populationCards = new List<Card>();
+    private static void CreatePopulationCards()
+    {
+
+    }
+
+    private static readonly List<Card> allPossibleCards = new List<Card>();
     private static void CreateAllPossibleCardsList()
     {
-        allPossibleCards.Add(new Card01());
+        foreach (Card card in foodCards)
+        {
+            allPossibleCards.Add(card);
+        }
+        foreach (Card card in militaryCards)
+        {
+            allPossibleCards.Add(card);
+        }
+        foreach (Card card in populationCards)
+        {
+            allPossibleCards.Add(card);
+        }
+    }
+
+    private static void InitializeCardLists()
+    {
+        CreateFoodCards();
+        CreateMilitaryCards();
+        CreatePopulationCards();
+        CreateAllPossibleCardsList();
+
+        cardsInitialized = true;
     }
 
     public static Queue<Card> CreateDeck()
     {
-        if (allPossibleCards.Count <= 0)
+        if (cardsInitialized == false)
         {
-            CreateAllPossibleCardsList();
+            InitializeCardLists();
         }
 
         int deckSize = 10;
