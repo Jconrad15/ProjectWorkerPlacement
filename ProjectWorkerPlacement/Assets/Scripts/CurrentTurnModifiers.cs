@@ -9,6 +9,7 @@ public class CurrentTurnModifiers: MonoBehaviour
 {
     public int AdditionalPopulation { get; private set; }
     public int AdditionalFoodPerPopulation { get; private set; }
+    public int FoodUpkeepPerPopulation { get; private set; }
 
     public static CurrentTurnModifiers Instance { get; private set; }
     private void Awake()
@@ -39,6 +40,7 @@ public class CurrentTurnModifiers: MonoBehaviour
     {
         AdditionalPopulation = 0;
         AdditionalFoodPerPopulation = 0;
+        FoodUpkeepPerPopulation = 0;
     }
 
     public void SetAdditionalPopulation(int amount)
@@ -50,5 +52,10 @@ public class CurrentTurnModifiers: MonoBehaviour
     {
         AdditionalFoodPerPopulation += amount;
     } 
+
+    public void AdjustFoodUpkeepPerPopulation(int amount)
+    {
+        FoodUpkeepPerPopulation += amount;
+    }
 
 }

@@ -54,7 +54,7 @@ public class CardPhaseManager : MonoBehaviour
         Debug.Log("Perform Card Phase");
 
         DrawHiddenCard();
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(1f);
 
         // Perform Cards
         foreach (Card card in currentCards)

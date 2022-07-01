@@ -12,6 +12,7 @@ public class GrowthPhaseManager : MonoBehaviour
     private Stockpile stockpile;
 
     private CurrentTurnModifiers modifiers;
+    private readonly int basePopulationFoodConsumption = 1;
 
     private void Start()
     {
@@ -34,12 +35,26 @@ public class GrowthPhaseManager : MonoBehaviour
         // Evaluate placement slots
         EvaluateFoodSlots();
         EvaluateDefenseSlots();
+
+        // Charge pop upkeep, then grow pop
+        PopulationUpkeep();
         EvaluatePopulationSlots();
 
         ReturnMeeplesHome();
 
         yield return null;
         PhaseController.Instance.NextPhase();
+    }
+
+    private void PopulationUpkeep()
+    {
+        int upkeepPerPop =
+            basePopulationFoodConsumption +
+            modifiers.FoodUpkeepPerPopulation;
+
+        int upkeep = stockpile.MeepleCount * upkeepPerPop;
+
+        stockpile.RemoveFood(upkeep);
     }
 
     private void EvaluateFoodSlots()
