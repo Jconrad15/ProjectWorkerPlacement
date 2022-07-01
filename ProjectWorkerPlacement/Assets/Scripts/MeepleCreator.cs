@@ -8,6 +8,7 @@ public class MeepleCreator : MonoBehaviour
     private GameObject meeplePrefab;
 
     private Action<Meeple> cbOnMeepleCreated;
+    private Action cbOnMeepleDestroyed;
 
     public void NewHomeMeeple(int count = 1)
     {
@@ -29,6 +30,14 @@ public class MeepleCreator : MonoBehaviour
         GenerateHomeMeeple();
     }
 
+    public void DestroyMeeple()
+    {
+        // TODO: destroy meeple
+
+
+        cbOnMeepleDestroyed?.Invoke();
+    }
+
     public void RegisterOnMeepleCreated(Action<Meeple> callbackfunc)
     {
         cbOnMeepleCreated += callbackfunc;
@@ -37,6 +46,16 @@ public class MeepleCreator : MonoBehaviour
     public void UnregisterOnMeepleCreated(Action<Meeple> callbackfunc)
     {
         cbOnMeepleCreated -= callbackfunc;
+    }
+
+    public void RegisterOnMeepleDestroyed(Action callbackfunc)
+    {
+        cbOnMeepleDestroyed += callbackfunc;
+    }
+
+    public void UnregisterOnMeepleDestroyed(Action callbackfunc)
+    {
+        cbOnMeepleDestroyed -= callbackfunc;
     }
 
 }

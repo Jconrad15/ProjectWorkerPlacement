@@ -12,7 +12,9 @@ public class GrowthPhaseManager : MonoBehaviour
     private Stockpile stockpile;
 
     private CurrentTurnModifiers modifiers;
+
     private readonly int basePopulationFoodConsumption = 1;
+    private readonly int baseDefensePerDefender = 1;
 
     private void Start()
     {
@@ -76,6 +78,38 @@ public class GrowthPhaseManager : MonoBehaviour
 
     private void EvaluateDefenseSlots()
     {
+        // Return if there are no attackers
+        if (modifiers.Attackers <= 0) { return; }
+
+        Area[] defenseAreas = workAreaManager.DefenseAreas;
+        int meepleCount = DetermineMeepleCount(defenseAreas);
+
+        int defenders = meepleCount *
+            (baseDefensePerDefender + modifiers.DefensePerDefender);
+
+        int damage = modifiers.Attackers - defenders;
+
+        if (damage <= 0) { return; }
+
+        // Effects of not stopping attackers
+        // Remove food or meeples
+        bool isDone = false;
+        while (isDone == false)
+        {
+            if (stockpile.FoodCount > 0)
+            {
+                stockpile.RemoveFood(1);
+                damage -= 1;
+            }
+            else
+            {
+                // not enough food
+                stockpile.RemoveMeeple();
+                damage -= 1;
+            }
+
+            if (damage <= 0) { isDone = true; }
+        }
 
     }
 

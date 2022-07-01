@@ -64,6 +64,12 @@ public class Stockpile : MonoBehaviour
         }
     }
 
+    public void RemoveMeeple()
+    {
+        MeepleCount -= 1;
+        meepleCreator.DestroyMeeple();
+    }
+
     public void RegisterOnFoodCountChanged(Action<int> callbackfunc)
     {
         cbOnFoodCountChanged += callbackfunc;
