@@ -10,7 +10,8 @@ public class CurrentTurnModifiers: MonoBehaviour
     public int AdditionalPopulation { get; private set; }
     public int AdditionalFoodPerPopulation { get; private set; }
     public int FoodUpkeepPerPopulation { get; private set; }
-    public int Attackers { get; private set; }
+    public int FoodRaiders { get; private set; }
+    public int AttackingWarriors { get; private set; }
     public int DefensePerDefender { get; private set; }
     public int AdditionalChildren { get; private set; }
 
@@ -44,7 +45,8 @@ public class CurrentTurnModifiers: MonoBehaviour
         AdditionalPopulation = 0;
         AdditionalFoodPerPopulation = 0;
         FoodUpkeepPerPopulation = 0;
-        Attackers = 0;
+        FoodRaiders = 0;
+        AttackingWarriors = 0;
         DefensePerDefender = 0;
         AdditionalChildren = 0;
     }
@@ -64,9 +66,14 @@ public class CurrentTurnModifiers: MonoBehaviour
         FoodUpkeepPerPopulation += amount;
     }
 
-    public void AdjustAttackers(int amount)
+    public void AdjustFoodRaiders(int amount)
     {
-        Attackers += amount;
+        FoodRaiders += amount;
+    }
+
+    public void AdjustAttackingWarriors(int amount)
+    {
+        AttackingWarriors += amount;
     }
 
     public void AdjustDefensePerDefender(int amount)

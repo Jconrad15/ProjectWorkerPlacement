@@ -26,10 +26,10 @@ public class GrowthPhaseManager : MonoBehaviour
 
     private void OnStartGrowthPhase()
     {
-        StartCoroutine(GrowthPhase());
+        GrowthPhase();
     }
 
-    private IEnumerator GrowthPhase()
+    private void GrowthPhase()
     {
         // Perform the growth phase
         Debug.Log("Perform Growth Phase");
@@ -44,7 +44,6 @@ public class GrowthPhaseManager : MonoBehaviour
 
         ReturnMeeplesHome();
 
-        yield return null;
         PhaseController.Instance.NextPhase();
     }
 
@@ -96,7 +95,7 @@ public class GrowthPhaseManager : MonoBehaviour
     private void EvaluateDefenseSlots()
     {
         // Return if there are no attackers
-        if (modifiers.Attackers <= 0) { return; }
+        if (modifiers.FoodRaiders <= 0) { return; }
 
         Area[] defenseAreas = workAreaManager.DefenseAreas;
         int meepleCount = DetermineMeepleCount(defenseAreas);
@@ -104,30 +103,63 @@ public class GrowthPhaseManager : MonoBehaviour
         int defenders = meepleCount *
             (baseDefensePerDefender + modifiers.DefensePerDefender);
 
-        int damage = modifiers.Attackers - defenders;
-
-        if (damage <= 0) { return; }
+        // Defenders first defend against food raiders. Then any remaining
+        // defend agains the attacking warriors. 
+        int foodDamage = modifiers.FoodRaiders - defenders;
+        int meepleDamage =
+            modifiers.AttackingWarriors +
+            (modifiers.FoodRaiders - defenders);
 
         // Effects of not stopping attackers
-        // Remove food or meeples
-        bool isDone = false;
-        while (isDone == false)
+
+        FoodRaid(foodDamage);
+
+        WarriorAttack(meepleDamage);
+
+    }
+
+    private void FoodRaid(int foodDamage)
+    {
+        if (foodDamage <= 0) { return; }
+
+        bool foodRaidIsDone = false;
+        while (foodRaidIsDone == false)
         {
             if (stockpile.FoodCount > 0)
             {
                 stockpile.RemoveFood(1);
-                damage -= 1;
+                foodDamage -= 1;
             }
             else
             {
-                // not enough food
-                stockpile.RemoveMeeple();
-                damage -= 1;
+                // Not enough food, then food raiders leave
+                foodRaidIsDone = true;
             }
 
-            if (damage <= 0) { isDone = true; }
+            if (foodDamage <= 0) { foodRaidIsDone = true; }
         }
+    }
 
+    private void WarriorAttack(int meepleDamage)
+    {
+        if (meepleDamage <= 0) { return; }
+
+        bool warriorAttackIsDone = false;
+        while (warriorAttackIsDone == false)
+        {
+            if (stockpile.MeepleCount > 0)
+            {
+                stockpile.RemoveMeeple();
+                meepleDamage -= 1;
+            }
+            else
+            {
+                // Not enough meeples, then warriors leave
+                warriorAttackIsDone = true;
+            }
+
+            if (meepleDamage <= 0) { warriorAttackIsDone = true; }
+        }
     }
 
     private void EvaluatePopulationSlots()

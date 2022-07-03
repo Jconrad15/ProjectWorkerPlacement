@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MilitaryCard01 : Card
+public class MilitaryCard02 : Card
 {
     public override CardType Type { get; protected set; }
         = CardType.Military;
 
     public override string CardName { get; protected set; }
-     = "Small Food Raid";
+     = "Small Attack Group";
 
     public override string Description { get; protected set; }
-     = "1 food raider arrives";
+     = "1 attacking warrior arrives";
 
     public override bool ApplyModifiers()
     {
-        CurrentTurnModifiers.Instance.AdjustFoodRaiders(1);
+        CurrentTurnModifiers.Instance.AdjustAttackingWarriors(1);
         return true;
     }
 }
