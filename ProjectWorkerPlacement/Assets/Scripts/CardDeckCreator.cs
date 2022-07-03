@@ -16,7 +16,7 @@ public static class CardDeckCreator
     private static void CreateMilitaryCards()
     {
         militaryCards.Add(new MilitaryCard01());
-
+        militaryCards.Add(new MilitaryCard02());
     }
 
     private static readonly List<Card> populationCards = new List<Card>();

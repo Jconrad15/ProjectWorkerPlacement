@@ -10,6 +10,8 @@ public class MeepleCreator : MonoBehaviour
     private Action<Meeple> cbOnMeepleCreated;
     private Action cbOnMeepleDestroyed;
 
+    private List<GameObject> meepleGOs = new List<GameObject>();
+
     public void NewHomeMeeple(int count = 1)
     {
         for (int i = 0; i < count; i++)
@@ -22,6 +24,9 @@ public class MeepleCreator : MonoBehaviour
     {
         GameObject meepleGO = Instantiate(meeplePrefab);
         Meeple meeple = meepleGO.GetComponent<Meeple>();
+
+        meepleGOs.Add(meepleGO);
+
         cbOnMeepleCreated?.Invoke(meeple);
     }
 
@@ -33,7 +38,11 @@ public class MeepleCreator : MonoBehaviour
     public void DestroyMeeple()
     {
         // TODO: destroy meeple
+        int lastIndex = meepleGOs.Count - 1;
 
+        GameObject meepleGO = meepleGOs[lastIndex];
+        Destroy(meepleGO);
+        meepleGOs.RemoveAt(lastIndex);
 
         cbOnMeepleDestroyed?.Invoke();
     }

@@ -95,7 +95,11 @@ public class GrowthPhaseManager : MonoBehaviour
     private void EvaluateDefenseSlots()
     {
         // Return if there are no attackers
-        if (modifiers.FoodRaiders <= 0) { return; }
+        if (modifiers.FoodRaiders <= 0 &&
+            modifiers.AttackingWarriors <= 0) 
+        { 
+            return; 
+        }
 
         Area[] defenseAreas = workAreaManager.DefenseAreas;
         int meepleCount = DetermineMeepleCount(defenseAreas);
@@ -106,16 +110,13 @@ public class GrowthPhaseManager : MonoBehaviour
         // Defenders first defend against food raiders. Then any remaining
         // defend agains the attacking warriors. 
         int foodDamage = modifiers.FoodRaiders - defenders;
-        int meepleDamage =
-            modifiers.AttackingWarriors +
-            (modifiers.FoodRaiders - defenders);
+        int remainingDefenders =
+            Mathf.Clamp(defenders - modifiers.FoodRaiders, 0, int.MaxValue);
+        int meepleDamage = modifiers.AttackingWarriors - remainingDefenders;
 
         // Effects of not stopping attackers
-
         FoodRaid(foodDamage);
-
         WarriorAttack(meepleDamage);
-
     }
 
     private void FoodRaid(int foodDamage)
