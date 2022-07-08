@@ -10,15 +10,15 @@ public static class CardDisplayProperties
         switch (card.Type)
         {
             case CardType.Food:
-                c = Color.green;
+                c = new Color32(57, 159, 44, 255);
                 break;
 
             case CardType.Population:
-                c = Color.blue;
+                c = new Color32(25, 37, 144, 255);
                 break;
 
             case CardType.Military:
-                c = Color.red;
+                c = new Color32(157, 2, 8, 255);
                 break;
         }
 

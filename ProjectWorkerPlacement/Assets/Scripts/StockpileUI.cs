@@ -26,21 +26,21 @@ public class StockpileUI : MonoBehaviour
 
     private void OnFoodCountChanged(int amount)
     {
-        foodText.SetText("Food: " + amount);
+        foodText.SetText(amount.ToString());
     }
 
     private void OnWoodCountChanged(int amount)
     {
-        woodText.SetText("Wood: " + amount);
+        woodText.SetText(amount.ToString());
     }
 
     private void OnStoneCountChanged(int amount)
     {
-        stoneText.SetText("Stone: " + amount);
+        stoneText.SetText(amount.ToString());
     }
 
     private void OnMeepleCountChanged(int amount)
     {
-        populationText.SetText("Population: " + amount);
+        populationText.SetText(amount.ToString());
     }
 }
