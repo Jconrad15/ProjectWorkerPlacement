@@ -37,8 +37,13 @@ public class MeepleCreator : MonoBehaviour
 
     public void DestroyMeeple()
     {
-        // TODO: destroy meeple
         int lastIndex = meepleGOs.Count - 1;
+
+        if (lastIndex < 0)
+        {
+            Debug.LogWarning("No meeple to destroy");
+            return;
+        }
 
         GameObject meepleGO = meepleGOs[lastIndex];
         Destroy(meepleGO);
