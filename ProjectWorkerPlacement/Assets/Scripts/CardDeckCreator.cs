@@ -5,27 +5,38 @@ public static class CardDeckCreator
 {
     private static bool cardsInitialized = false;
 
-    private static readonly List<Card> foodCards = new List<Card>();
+    private static readonly List<Card> foodCards =
+        new List<Card>();
     private static void CreateFoodCards()
     {
         foodCards.Add(new FoodCard01());
 
     }
 
-    private static readonly List<Card> militaryCards = new List<Card>();
+    private static readonly List<Card> militaryCards = new
+        List<Card>();
     private static void CreateMilitaryCards()
     {
         militaryCards.Add(new MilitaryCard01());
         militaryCards.Add(new MilitaryCard02());
     }
 
-    private static readonly List<Card> populationCards = new List<Card>();
+    private static readonly List<Card> populationCards = new
+        List<Card>();
     private static void CreatePopulationCards()
     {
-
+        populationCards.Add(new PopulationCard01());
     }
 
-    private static readonly List<Card> allPossibleCards = new List<Card>();
+    private static readonly List<Card> woodCards = new
+    List<Card>();
+    private static void CreateWoodCards()
+    {
+        woodCards.Add(new WoodCard01());
+    }
+
+    private static readonly List<Card> allPossibleCards =
+        new List<Card>();
     private static void CreateAllPossibleCardsList()
     {
         foreach (Card card in foodCards)
@@ -40,6 +51,10 @@ public static class CardDeckCreator
         {
             allPossibleCards.Add(card);
         }
+        foreach (Card card in foodCards)
+        {
+            allPossibleCards.Add(card);
+        }
     }
 
     private static void InitializeCardLists()
@@ -47,6 +62,7 @@ public static class CardDeckCreator
         CreateFoodCards();
         CreateMilitaryCards();
         CreatePopulationCards();
+        CreateWoodCards();
         CreateAllPossibleCardsList();
 
         cardsInitialized = true;
@@ -65,7 +81,9 @@ public static class CardDeckCreator
         for (int i = 0; i < deckSize; i++)
         {
             // TODO: Better deck creation
-            int selectedCard = Random.Range(0, allPossibleCards.Count);
+            int selectedCard =
+                Random.Range(0, allPossibleCards.Count);
+
             Card c = allPossibleCards[selectedCard];
 
             deck.Enqueue(c);

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CardType { Food, Population, Military };
+public enum CardType { Food, Population, Military, Wood, Stone };
 public abstract class Card
 {
     public abstract CardType Type { get; protected set; }

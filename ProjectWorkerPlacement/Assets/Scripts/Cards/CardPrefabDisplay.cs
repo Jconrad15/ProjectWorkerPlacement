@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -17,10 +15,10 @@ public class CardPrefabDisplay : MonoBehaviour
         nameText.SetText(card.CardName);
         descriptionText.SetText(card.Description);
 
-        Color c = CardDisplayProperties.DetermineCardColor(card);
+        Color c = ColorDatabase.Instance
+            .GetColorByCardType(card.Type);
+        
         sr.color = c;
-
     }
-
 
 }

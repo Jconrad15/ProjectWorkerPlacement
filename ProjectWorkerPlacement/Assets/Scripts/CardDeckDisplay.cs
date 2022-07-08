@@ -48,7 +48,8 @@ public class CardDeckDisplay : MonoBehaviour
                 break;
         }
 
-        Color c = CardDisplayProperties.DetermineCardColor(peekedCard);
+        Color c = ColorDatabase.Instance
+            .GetColorByCardType(peekedCard.Type);
         currentSR.color = c;
     }
 }

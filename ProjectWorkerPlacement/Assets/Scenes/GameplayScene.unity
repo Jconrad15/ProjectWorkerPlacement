@@ -446,7 +446,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &106200396
 GameObject:
@@ -623,6 +623,7 @@ GameObject:
   m_Component:
   - component: {fileID: 239247127}
   - component: {fileID: 239247128}
+  - component: {fileID: 239247129}
   m_Layer: 0
   m_Name: character_place
   m_TagString: Untagged
@@ -687,7 +688,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2d4c6282d48ef2c43b698c9ee40befe4, type: 3}
-  m_Color: {r: 0.09803922, g: 0.14509805, b: 0.5647059, a: 1}
+  m_Color: {r: 0.35686275, g: 0.56078434, b: 0.93333334, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -697,6 +698,68 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &239247129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239247126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e306270844550c642b6a16050e37e601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardColorType: 1
+--- !u!1 &248428569
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 248428571}
+  - component: {fileID: 248428570}
+  m_Layer: 0
+  m_Name: ColorDatabase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &248428570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248428569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a8869c7f4ef419449cee248c098fd6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  populationColor: {r: 0.35686275, g: 0.56078434, b: 0.9333334, a: 1}
+  foodColor: {r: 0.21960786, g: 0.62352943, b: 0.16862746, a: 1}
+  woodColor: {r: 0.50980395, g: 0.2627451, b: 0.12941177, a: 1}
+  stoneColor: {r: 0.620461, g: 0.67893374, b: 0.6886792, a: 1}
+  militaryColor: {r: 0.9150943, g: 0.34100214, b: 0.34100214, a: 1}
+--- !u!4 &248428571
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248428569}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &336582498
 GameObject:
   m_ObjectHideFlags: 0
@@ -875,7 +938,7 @@ Transform:
   - {fileID: 1697749463}
   - {fileID: 1462016341}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &342387556
 MonoBehaviour:
@@ -1742,6 +1805,7 @@ GameObject:
   - component: {fileID: 747191910}
   - component: {fileID: 747191912}
   - component: {fileID: 747191911}
+  - component: {fileID: 747191913}
   m_Layer: 5
   m_Name: StoneIcon
   m_TagString: Untagged
@@ -1807,6 +1871,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 747191909}
   m_CullTransparentMesh: 1
+--- !u!114 &747191913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747191909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e306270844550c642b6a16050e37e601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardColorType: 4
 --- !u!1001 &790011751
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1922,7 +1999,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &822541174
 GameObject:
@@ -1989,7 +2066,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &841747749
 GameObject:
@@ -2022,7 +2099,7 @@ Transform:
   - {fileID: 239247127}
   - {fileID: 1656995681}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &866022023 stripped
 Transform:
@@ -2175,6 +2252,7 @@ GameObject:
   - component: {fileID: 911872302}
   - component: {fileID: 911872304}
   - component: {fileID: 911872303}
+  - component: {fileID: 911872305}
   m_Layer: 5
   m_Name: PopulationIcon
   m_TagString: Untagged
@@ -2215,7 +2293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.09878961, g: 0.14589548, b: 0.5660378, a: 1}
+  m_Color: {r: 0.35686275, g: 0.56078434, b: 0.93333334, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2240,6 +2318,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 911872301}
   m_CullTransparentMesh: 1
+--- !u!114 &911872305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911872301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e306270844550c642b6a16050e37e601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardColorType: 1
 --- !u!1 &924079449
 GameObject:
   m_ObjectHideFlags: 0
@@ -2282,7 +2373,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &928788150
 GameObject:
@@ -2295,6 +2386,7 @@ GameObject:
   - component: {fileID: 928788151}
   - component: {fileID: 928788153}
   - component: {fileID: 928788152}
+  - component: {fileID: 928788154}
   m_Layer: 5
   m_Name: WoodIcon
   m_TagString: Untagged
@@ -2360,6 +2452,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 928788150}
   m_CullTransparentMesh: 1
+--- !u!114 &928788154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928788150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e306270844550c642b6a16050e37e601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardColorType: 3
 --- !u!114 &932780620 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2704578515039471268, guid: 066695a5593dd054597e107bbea7ac6d, type: 3}
@@ -2487,7 +2592,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1095277060
 GameObject:
@@ -2499,6 +2604,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1095277061}
   - component: {fileID: 1095277062}
+  - component: {fileID: 1095277066}
   - component: {fileID: 1095277063}
   - component: {fileID: 1095277064}
   - component: {fileID: 1095277065}
@@ -2522,7 +2628,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1095277062
 MonoBehaviour:
@@ -2578,7 +2684,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b78a1ac5ea9f7fc4da537c7a0ce9d870, type: 3}
-  m_Color: {r: 0.09803922, g: 0.14509805, b: 0.5647059, a: 1}
+  m_Color: {r: 0.35686275, g: 0.56078434, b: 0.93333334, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2628,6 +2734,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1095277066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095277060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e306270844550c642b6a16050e37e601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardColorType: 1
 --- !u!4 &1100846647 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6437236033924039754, guid: 12729feb353ad6a438afa582db02d8a7, type: 3}
@@ -3166,7 +3285,7 @@ Transform:
   - {fileID: 563737657}
   - {fileID: 7655446}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1340890003
 MonoBehaviour:
@@ -3182,8 +3301,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPhaseManager: {fileID: 1978716675}
   drawnCardPrefab: {fileID: 8347536831765065990, guid: 649f1f32f0be42a45acd7743f268e484, type: 3}
-  drawnHiddenCardPos: {x: 7, y: 0}
-  drawnKnownCardPos: {x: 5, y: 0}
+  drawnHiddenCardPos: {x: 7, y: 0.7}
+  drawnKnownCardPos: {x: 5, y: 0.7}
 --- !u!114 &1340890004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3641,7 +3760,7 @@ RectTransform:
   - {fileID: 1970934077}
   - {fileID: 1551770420}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4402,7 +4521,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1656995680}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4596,6 +4715,7 @@ GameObject:
   - component: {fileID: 1744333400}
   - component: {fileID: 1744333402}
   - component: {fileID: 1744333401}
+  - component: {fileID: 1744333403}
   m_Layer: 5
   m_Name: FoodIcon
   m_TagString: Untagged
@@ -4661,6 +4781,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1744333399}
   m_CullTransparentMesh: 1
+--- !u!114 &1744333403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744333399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e306270844550c642b6a16050e37e601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardColorType: 0
 --- !u!114 &1842378666 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6437236033924039748, guid: 12729feb353ad6a438afa582db02d8a7, type: 3}
@@ -4801,7 +4934,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1900298844
 GameObject:
@@ -5435,7 +5568,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1989278212
 GameObject:
@@ -5617,7 +5750,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2028857488
 GameObject:
@@ -5749,7 +5882,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2704578514292225069
 PrefabInstance:
