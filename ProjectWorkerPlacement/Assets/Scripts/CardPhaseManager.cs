@@ -54,7 +54,7 @@ public class CardPhaseManager : MonoBehaviour
         Debug.Log("Perform Card Phase");
 
         DrawHiddenCard();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
 
         // Perform Cards
         foreach (Card card in currentCards)
@@ -64,7 +64,7 @@ public class CardPhaseManager : MonoBehaviour
             {
                 cardIsDone = card.ApplyModifiers();
 
-                yield return null;
+                yield return new WaitForSeconds(0.4f);
             }
         }
 
