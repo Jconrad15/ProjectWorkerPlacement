@@ -36,6 +36,10 @@ public class GrowthPhaseManager : MonoBehaviour
 
         // Evaluate placement slots
         EvaluateFoodSlots();
+        EvaluateWoodSlots();
+        EvaluateStoneSlots();
+        EvaluateWonderSlots();
+
         EvaluateDefenseSlots();
 
         // Charge pop upkeep, then grow pop
@@ -45,6 +49,48 @@ public class GrowthPhaseManager : MonoBehaviour
         ReturnMeeplesHome();
 
         PhaseController.Instance.NextPhase();
+    }
+
+    private void EvaluateWoodSlots()
+    {
+        Area[] woodAreas = workAreaManager.WoodAreas;
+        int meepleCount = DetermineMeepleCount(woodAreas);
+
+        // Base wood is factorial but with addtion
+        int baseWoodCount =
+            ((meepleCount * meepleCount) + meepleCount) / 2;
+
+        // TODO: modifiers from cards here
+        int woodCount =
+            baseWoodCount +
+            (modifiers.AdditionalWoodPerPopulation * meepleCount);
+
+        stockpile.AddWood(woodCount);
+    }
+
+    private void EvaluateStoneSlots()
+    {
+        Area[] stoneAreas = workAreaManager.StoneAreas;
+        int meepleCount = DetermineMeepleCount(stoneAreas);
+
+        // Base stone is factorial but with addtion
+        int baseStoneCount =
+            ((meepleCount * meepleCount) + meepleCount) / 2;
+
+        // TODO: modifiers from cards here
+        int stoneCount =
+            baseStoneCount +
+            (modifiers.AdditionalStonePerPopulation * meepleCount);
+
+        stockpile.AddStone(stoneCount);
+    }
+
+    private void EvaluateWonderSlots()
+    {
+        Area[] wonderAreas = workAreaManager.WonderAreas;
+        int meepleCount = DetermineMeepleCount(wonderAreas);
+
+        // TODO: Wonder construction
     }
 
     private void PopulationUpkeep()

@@ -14,6 +14,8 @@ public class CurrentTurnModifiers: MonoBehaviour
     public int AttackingWarriors { get; private set; }
     public int DefensePerDefender { get; private set; }
     public int AdditionalChildren { get; private set; }
+    public int AdditionalWoodPerPopulation { get;private set; }
+    public int AdditionalStonePerPopulation { get; private set; }
 
     public static CurrentTurnModifiers Instance { get; private set; }
     private void Awake()
@@ -49,6 +51,8 @@ public class CurrentTurnModifiers: MonoBehaviour
         AttackingWarriors = 0;
         DefensePerDefender = 0;
         AdditionalChildren = 0;
+        AdditionalWoodPerPopulation = 0;
+        AdditionalStonePerPopulation = 0;
     }
 
     public void SetAdditionalPopulation(int amount)
@@ -86,4 +90,13 @@ public class CurrentTurnModifiers: MonoBehaviour
         AdditionalChildren += amount;
     }
 
+    public void AdjustAdditionalWoodPerPopulation(int amount)
+    {
+        AdditionalWoodPerPopulation += amount;
+    }
+
+    public void AdjustAdditionalStonePerPopulation(int amount)
+    {
+        AdditionalStonePerPopulation += amount;
+    }
 }

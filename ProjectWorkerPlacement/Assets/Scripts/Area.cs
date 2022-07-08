@@ -2,7 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum AreaType { Home, Food, Defense, Population };
+public enum AreaType 
+{
+    Home, Food, Defense, Population, Wood, Stone, Wonder
+};
+
 public class Area : MonoBehaviour
 {
     [SerializeField]

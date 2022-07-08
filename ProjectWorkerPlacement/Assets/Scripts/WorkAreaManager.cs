@@ -23,9 +23,25 @@ public class WorkAreaManager : MonoBehaviour
     [SerializeField]
     private Area populationArea1;
 
+    [SerializeField]
+    private Area woodArea0;
+    [SerializeField]
+    private Area woodArea1;
+
+    [SerializeField]
+    private Area stoneArea0;
+    [SerializeField]
+    private Area stoneArea1;
+
+    [SerializeField]
+    private Area wonderArea0;
+
     public Area[] FoodAreas { get; private set; }
     public Area[] DefenseAreas { get; private set; }
     public Area[] PopulationAreas { get; private set; }
+    public Area[] WoodAreas { get; private set; }
+    public Area[] StoneAreas { get; private set; }
+    public Area[] WonderAreas { get; private set; }
 
     private void OnEnable()
     {
@@ -47,6 +63,23 @@ public class WorkAreaManager : MonoBehaviour
         {
             populationArea0,
             populationArea1
+        };
+
+        WoodAreas = new Area[2]
+        {
+            woodArea0,
+            woodArea1
+        };
+
+        StoneAreas = new Area[2]
+        {
+            stoneArea0,
+            stoneArea1
+        };
+
+        WonderAreas = new Area[1]
+        {
+            wonderArea0
         };
     }
 
