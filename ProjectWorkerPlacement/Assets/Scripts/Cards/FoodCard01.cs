@@ -15,7 +15,8 @@ public class FoodCard01 : Card
 
     public override bool ApplyModifiers()
     {
-        CurrentTurnModifiers.Instance.AdjustAdditionalFoodPerPopulation(1);
+        CurrentTurnModifiers.Instance
+            .AdjustAdditionalFoodPerPopulation(1);
         return true;
     }
 }
