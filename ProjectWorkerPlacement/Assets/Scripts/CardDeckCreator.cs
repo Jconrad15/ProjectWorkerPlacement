@@ -29,10 +29,17 @@ public static class CardDeckCreator
     }
 
     private static readonly List<Card> woodCards = new
-    List<Card>();
+        List<Card>();
     private static void CreateWoodCards()
     {
         woodCards.Add(new WoodCard01());
+    }
+
+    private static readonly List<Card> stoneCards = new
+        List<Card>();
+    private static void CreateStoneCards()
+    {
+        stoneCards.Add(new StoneCard01());
     }
 
     private static readonly List<Card> allPossibleCards =
@@ -51,7 +58,11 @@ public static class CardDeckCreator
         {
             allPossibleCards.Add(card);
         }
-        foreach (Card card in foodCards)
+        foreach (Card card in woodCards)
+        {
+            allPossibleCards.Add(card);
+        }
+        foreach (Card card in stoneCards)
         {
             allPossibleCards.Add(card);
         }
@@ -63,6 +74,7 @@ public static class CardDeckCreator
         CreateMilitaryCards();
         CreatePopulationCards();
         CreateWoodCards();
+        CreateStoneCards();
         CreateAllPossibleCardsList();
 
         cardsInitialized = true;
