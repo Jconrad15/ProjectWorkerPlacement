@@ -31,7 +31,7 @@ public class ColorReference : MonoBehaviour
         {
             sr.color = selectedColor;
         }
-        if (TryGetComponent(out Image image))
+        else if (TryGetComponent(out Image image))
         {
             image.color = selectedColor;
         }
