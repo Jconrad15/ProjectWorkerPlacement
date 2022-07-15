@@ -60,7 +60,7 @@ public class Stockpile : MonoBehaviour
     {
         // Starting stockpile values
         MeepleCount = 0;
-        FoodCount = 2;
+        FoodCount = 3;
         WoodCount = 0;
         StoneCount = 0;
 

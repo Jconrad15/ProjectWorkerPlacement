@@ -83,4 +83,15 @@ public class WorkAreaManager : MonoBehaviour
         };
     }
 
+    public int DetermineMeepleCount(Area[] areas)
+    {
+        int meepleCount = 0;
+        for (int i = 0; i < areas.Length; i++)
+        {
+            meepleCount += areas[i].GetMeepleCount();
+        }
+
+        return meepleCount;
+    }
+
 }

@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +15,13 @@ public class Area : MonoBehaviour
     private AreaType areaType;
 
     private List<Meeple> meeples = new List<Meeple>();
+    private Action<Area> cbOnMeepleAdded;
+    private Action<Area> cbOnMeepleRemoved;
+
+    public AreaType GetAreaType()
+    {
+        return areaType;
+    }
 
     public bool TryAddMeeple(Meeple meeple)
     {
@@ -27,9 +34,8 @@ public class Area : MonoBehaviour
         meepleGO.transform.position = transform.position;
 
         meeples.Add(meeple);
-
         meeple.SetCurrentArea(this);
-
+        cbOnMeepleAdded?.Invoke(this);
         return true;
     }
 
@@ -38,6 +44,7 @@ public class Area : MonoBehaviour
         if (meeples.Contains(meeple))
         {
             meeples.Remove(meeple);
+            cbOnMeepleRemoved?.Invoke(this);
         }
         else
         {
@@ -51,4 +58,27 @@ public class Area : MonoBehaviour
         return meeples.Count;
     }
 
+    public void RegisterOnMeepleAdded(
+        Action<Area> callbackfunc)
+    {
+        cbOnMeepleAdded += callbackfunc;
+    }
+
+    public void UnregisterOnMeepleAdded(
+        Action<Area> callbackfunc)
+    {
+        cbOnMeepleAdded -= callbackfunc;
+    }
+
+    public void RegisterOnMeepleRemoved(
+        Action<Area> callbackfunc)
+    {
+        cbOnMeepleRemoved += callbackfunc;
+    }
+
+    public void UnregisterOnMeepleRemoved(
+        Action<Area> callbackfunc)
+    {
+        cbOnMeepleRemoved -= callbackfunc;
+    }
 }

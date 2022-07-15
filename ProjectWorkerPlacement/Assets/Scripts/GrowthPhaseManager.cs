@@ -54,11 +54,10 @@ public class GrowthPhaseManager : MonoBehaviour
     private void EvaluateWoodSlots()
     {
         Area[] woodAreas = workAreaManager.WoodAreas;
-        int meepleCount = DetermineMeepleCount(woodAreas);
+        int meepleCount = workAreaManager.DetermineMeepleCount(woodAreas);
 
-        // Base wood is factorial but with addtion
         int baseWoodCount =
-            ((meepleCount * meepleCount) + meepleCount) / 2;
+            BaseAreaYields.GetBaseWoodYield(meepleCount);
 
         // TODO: modifiers from cards here
         int woodCount =
@@ -71,11 +70,10 @@ public class GrowthPhaseManager : MonoBehaviour
     private void EvaluateStoneSlots()
     {
         Area[] stoneAreas = workAreaManager.StoneAreas;
-        int meepleCount = DetermineMeepleCount(stoneAreas);
+        int meepleCount = workAreaManager.DetermineMeepleCount(stoneAreas);
 
-        // Base stone is factorial but with addtion
         int baseStoneCount =
-            ((meepleCount * meepleCount) + meepleCount) / 2;
+            BaseAreaYields.GetBaseStoneYield(meepleCount);
 
         // TODO: modifiers from cards here
         int stoneCount =
@@ -88,9 +86,11 @@ public class GrowthPhaseManager : MonoBehaviour
     private void EvaluateWonderSlots()
     {
         Area[] wonderAreas = workAreaManager.WonderAreas;
-        int meepleCount = DetermineMeepleCount(wonderAreas);
+        int meepleCount = workAreaManager.DetermineMeepleCount(wonderAreas);
 
         // TODO: Wonder construction
+        int baseWonderCount =
+            BaseAreaYields.GetBaseWonderYield(meepleCount);
     }
 
     private void PopulationUpkeep()
@@ -124,11 +124,10 @@ public class GrowthPhaseManager : MonoBehaviour
     private void EvaluateFoodSlots()
     {
         Area[] foodAreas = workAreaManager.FoodAreas;
-        int meepleCount = DetermineMeepleCount(foodAreas);
+        int meepleCount = workAreaManager.DetermineMeepleCount(foodAreas);
 
-        // Base food is factorial but with addtion
         int baseFoodCount =
-            ((meepleCount * meepleCount) + meepleCount) / 2;
+            BaseAreaYields.GetBaseFoodYield(meepleCount);
 
         // TODO: modifiers from cards here
         int foodCount =
@@ -148,17 +147,22 @@ public class GrowthPhaseManager : MonoBehaviour
         }
 
         Area[] defenseAreas = workAreaManager.DefenseAreas;
-        int meepleCount = DetermineMeepleCount(defenseAreas);
-
-        int defenders = meepleCount *
+        int meepleCount =
+            workAreaManager.DetermineMeepleCount(defenseAreas);
+        int baseDefense =
+            BaseAreaYields.GetBaseDefenseYield(meepleCount);
+        int defenders = baseDefense *
             (baseDefensePerDefender + modifiers.DefensePerDefender);
 
-        // Defenders first defend against food raiders. Then any remaining
-        // defend agains the attacking warriors. 
+        // Defenders first defend against food raiders.
+        // Then any remaining defend againts attacking warriors. 
         int foodDamage = modifiers.FoodRaiders - defenders;
         int remainingDefenders =
-            Mathf.Clamp(defenders - modifiers.FoodRaiders, 0, int.MaxValue);
-        int meepleDamage = modifiers.AttackingWarriors - remainingDefenders;
+            Mathf.Clamp(defenders - modifiers.FoodRaiders,
+            0,
+            int.MaxValue);
+        int meepleDamage = modifiers.AttackingWarriors -
+                           remainingDefenders;
 
         // Effects of not stopping attackers
         FoodRaid(foodDamage);
@@ -212,7 +216,10 @@ public class GrowthPhaseManager : MonoBehaviour
     private void EvaluatePopulationSlots()
     {
         Area[] populationAreas = workAreaManager.PopulationAreas;
-        int meepleCount = DetermineMeepleCount(populationAreas);
+        int meepleCount = workAreaManager.DetermineMeepleCount(populationAreas);
+
+        int basePopulation =
+            BaseAreaYields.GetBasePopulationYield(meepleCount);
 
         // Add modifiers from cards
         int additionalPopulation = modifiers.AdditionalPopulation;
@@ -222,23 +229,11 @@ public class GrowthPhaseManager : MonoBehaviour
         }
 
         // Base slot growth
-        if (meepleCount == 2)
+        if (basePopulation == 1)
         {
             int childCount = 1 + modifiers.AdditionalChildren;
             stockpile.AddMeeple(childCount);
         }
-
-    }
-
-    private int DetermineMeepleCount(Area[] areas)
-    {
-        int meepleCount = 0;
-        for (int i = 0; i < areas.Length; i++)
-        {
-            meepleCount += areas[i].GetMeepleCount();
-        }
-
-        return meepleCount;
     }
 
     private void ReturnMeeplesHome()
